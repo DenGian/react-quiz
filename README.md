@@ -125,4 +125,8 @@ Then you can update them independently with separate ```setState()``` calls:
 
 The merging is shallow, so ```this.setState({comments})``` leaves ```this.state.posts``` intact, but completely replaces ```this.state.comments```.
 
-### Chapter 3.3: 
+### Chapter 3.3: Hooks
+
+#### Hooks allow you to reuse stateful logic without changing your component hierarchy.
+
+#### Chapter 3.3.1: Why we use hooks?
