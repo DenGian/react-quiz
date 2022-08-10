@@ -12,7 +12,7 @@ React has been designed from the start for gradual adoption, and **you can use a
 
 ### Chapter 1.1: Learn React
 
-If you prefer to learn by doing, [click here](https://reactjs.org/tutorial/tutorial.html).
+If you prefer to learn by doing, [click here](https://reactjs.org/tutorial/tutorial.html).  
 If you prefer to learn concepts step by step, [click here](https://reactjs.org/docs/hello-world.html).
 
 ### Chapter 1.2: Example
