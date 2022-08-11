@@ -1,0 +1,11 @@
+.square2{
+    height: 20vh;
+    width: 48.5%;
+    background-color: blue;
+    text-align: center;
+    font-family: "Comic Sans MS", serif;
+    font-size: xxx-large;
+    position: absolute;
+    bottom: 22.5%;
+    right: 1vw;
+}
