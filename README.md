@@ -1,11 +1,9 @@
 # react-quiz
 
 ## MaTS
-<p align="center">
 
 ![meme](images/meme.png)
 
-</p>
 ---
 ## Chapter 1: What is React.js?
 
