@@ -1,0 +1,11 @@
+.questionSquare{
+    height: 38vh;
+    width: 40vw;
+    margin: 1vh auto auto;
+    background-color: hotpink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Comic Sans MS", serif;
+    font-size: x-large;
+}
