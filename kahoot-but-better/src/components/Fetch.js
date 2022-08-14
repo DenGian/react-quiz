@@ -1,5 +1,7 @@
 import React, {useState/*, useEffect*/} from "react";
 import "./css/QuestionSquare.css"
+import {decode} from 'html-entities';
+import AnswerHelper from "./Helper/AnswerHelper";
 
 export default function Fetch() {
     // const [data, setData] = useState(null);
@@ -7,8 +9,9 @@ export default function Fetch() {
     // const [error, setError] = useState(null);
     const [amount, setAmount] = useState(10)
     const [questions, setQuestions] = useState('')
+    const answerArray = []
 
-    const url = 'https://opentdb.com/api.php?amount=' + amount;
+    const url = 'https://opentdb.com/api.php?amount=' + amount + '&type=multiple';
 
     // useEffect(() => {
     //     fetch(url)
@@ -44,34 +47,57 @@ export default function Fetch() {
             setAmount(event.target.value)
         }
     }
-    const getQuestions = async e => {
+    const getQuestionsAndAnswers = async e => {
         e.preventDefault()
         const questionsArray = [];
+        const wrongAnswersArray = [];
         const res = await fetch(url);
         let data = await res.json();
-        for (const question of data.results){
-            questionsArray.push ((question.question))
+        console.log(data.results);
+        for (const question of data.results) {
+            questionsArray.push((decode(question.question)));
+            AnswerHelper.setRightAnswer(decode(question.correct_answer));
+            wrongAnswersArray.push(decode(question.incorrect_answers));
+            AnswerHelper.setWrongAnswers(wrongAnswersArray);
         }
         setQuestions(questionsArray)
         console.log(questionsArray);
-        return questions;
+        console.log(AnswerHelper.rightAnswer);
+        console.log(AnswerHelper.wrongAnswer);
+        return whatever();
     }
-    // console.log(url)
+    console.log(url)
+    AnswerHelper.setCombineAnswers(getQuestionsAndAnswers())
+
+    function whatever(){
+    if (AnswerHelper.wrongAnswer[0].length > 1){
+        for (const answer of AnswerHelper.wrongAnswer[0]){
+            answerArray.push(answer)
+        }
+    }
+    else {
+        answerArray.push(AnswerHelper.wrongAnswer[0])
+    }
+    answerArray.push(AnswerHelper.rightAnswer)
+    return answerArray
+}
+
+
     return (
         <div className="fetch">
-            <form>
+
                 <label htmlFor="amount">Number of questions: </label>
                 <input type="text" name="amount" id="amount" onChange={numberOfQuestions} required></input>
                 <label htmlFor="subject"> Choose a subject: </label>
                 <select name="subject" id="subject">
                     <option value=""></option>
                 </select>
-                <button type={"submit"} onClick={getQuestions}>Let's play!</button>
-            </form>
+                <button onClick={getQuestionsAndAnswers}>Let's play!</button>
+
             <div className="questionSquare">
-            <div>
-                {questions[0]}
-            </div>
+                <div>
+                    {questions[0]}
+                </div>
             </div>
         </div>
     )
